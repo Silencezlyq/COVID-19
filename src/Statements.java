@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
 public enum Statements {
+    susceptible,infected,hided,recovered,death
 }
