@@ -47,4 +47,15 @@ public class WholeArea {
         wholeArea[x][y].infect(wholeArea[x-2][y+1],4);
         wholeArea[x][y].infect(wholeArea[x-2][y+2],4);
     }
+
+    public void setPeople(People people) {
+        this.wholeArea[people.getLocationX()][people.getLocationY()].addPeople(people);
+    }
+
+    public void deletePeople() {
+        int num=Simulator.lengthOfAnArea;
+        for(int i=0;i<num;i++)
+            for (int j=0;j<num;j++)
+                wholeArea[i][j].deleteWholePeople();
+    }
 }

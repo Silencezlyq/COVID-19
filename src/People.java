@@ -7,6 +7,8 @@ public class People {
     private List<Integer> location = new LinkedList<>();
     private int ID;
     private int latencyTime;
+    private boolean isolated;
+
 
     public People(int id,int x,int y,Statements statement){
         this.ID = id;
@@ -16,21 +18,31 @@ public class People {
         this.location.add(y);
         this.statement=statement;
         this.latencyTime=-1;
+
+        this.isolated=false;
     }
 
-    private void goAround(){
+    public void goAround(){
         this.location.set(0,move(this.location.get(0)));
         this.location.set(1,move(this.location.get(1)));
     }
 
-    private void goAround(int x,int y){
+    public void goAround(int x,int y){
         this.location.set(0,x);
         this.location.set(1,y);
     }
 
-    private void goHome(){
+    public void goHome(){
         this.location.set(0,this.home.get(0));
         this.location.set(1,this.home.get(1));
+    }
+
+    public int getLocationX(){
+        return this.location.get(0);
+    }
+
+    public int getLocationY(){
+        return this.location.get(1);
     }
 
     public boolean infectious(){

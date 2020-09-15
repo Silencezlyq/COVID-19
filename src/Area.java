@@ -10,12 +10,16 @@ public class Area {
         this.peopleInTheArea = new HashSet<>();
     }
 
-    private void addPeople(People people){
+    public void addPeople(People people){
         this.peopleInTheArea.add(people);
     }
 
-    private void deletePeople(People people){
+    public void deletePeople(People people){
         this.peopleInTheArea.remove(people);
+    }
+
+    public void deleteWholePeople(){
+        this.peopleInTheArea.clear();
     }
 
 
@@ -38,5 +42,15 @@ public class Area {
     public void setLocationXY(int locationX,int locationY) {
         this.locationX = locationX;
         this.locationY = locationY;
+    }
+
+    public Set<People> getPeopleInTheArea() {
+        return peopleInTheArea;
+    }
+
+    public void setNewPersonFalse(){
+        for(People people : this.peopleInTheArea){
+            people.setNewPersonFalse();
+        }
     }
 }
