@@ -1,12 +1,16 @@
 public class WholeArea {
-    private Area wholeArea[][];
+    private Area[][] wholeArea;
 
     public WholeArea(){
         int num=Simulator.lengthOfAnArea;
         this.wholeArea=new Area[num][num];
-        for(int i=0;i<num;i++)
-            for (int j=0;j<num;j++)
-                wholeArea[i][j].setLocationXY(i,j);
+        for(int i=0;i<num;i++) {
+            for (int j=0;j<num;j++) {
+                this.wholeArea[i][j]=new Area();
+                this.wholeArea[i][j].setLocationXY(i,j);
+            }
+        }
+
     }
 
     public void spread(){
@@ -57,5 +61,12 @@ public class WholeArea {
         for(int i=0;i<num;i++)
             for (int j=0;j<num;j++)
                 wholeArea[i][j].deleteWholePeople();
+    }
+
+    public void getMessages(){
+        int num=Simulator.lengthOfAnArea;
+        for(int i=0;i<num;i++)
+            for (int j=0;j<num;j++)
+                wholeArea[i][j].getMessage();
     }
 }

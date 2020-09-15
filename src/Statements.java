@@ -1,3 +1,3 @@
 public enum Statements {
-    susceptible,infected,hided,recovered,death
+    susceptible,infected,hided,antibody,death
 }

@@ -8,6 +8,8 @@ public class Area {
 
     public Area(){
         this.peopleInTheArea = new HashSet<>();
+        this.locationX=0;
+        this.locationY=0;
     }
 
     public void addPeople(People people){
@@ -28,6 +30,7 @@ public class Area {
         for(People people : area.peopleInTheArea){
             if(!people.infectious()&&rate>(int)(Math.random()*100)){
                 people.setStatement(Statements.infected);
+
             }
         }
     }
@@ -39,18 +42,24 @@ public class Area {
         return false;
     }
 
-    public void setLocationXY(int locationX,int locationY) {
-        this.locationX = locationX;
-        this.locationY = locationY;
+    public void setLocationXY(int X,int Y) {
+        this.locationX = X;
+        this.locationY = Y;
     }
 
     public Set<People> getPeopleInTheArea() {
         return peopleInTheArea;
     }
 
-    public void setNewPersonFalse(){
-        for(People people : this.peopleInTheArea){
-            people.setNewPersonFalse();
+    public void getMessage(){
+        if(!this.peopleInTheArea.isEmpty()){
+            System.out.println("("+this.locationX+","+this.locationY+"):");
+            for(People people : this.peopleInTheArea){
+                System.out.print(people.getID()+",");
+            }
+            System.out.println();
         }
+
     }
+
 }
