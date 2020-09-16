@@ -4,7 +4,7 @@ import java.util.Set;
 public class WholePeople {
     private int numberOfSusceptible;
     private int numberOfInfected;
-    private int numberOfHided;
+    private int numberOfHidden;
     private int numberOfDead;
     private int numberOfAntibody;
     private int numberOfIsolated;
@@ -12,7 +12,7 @@ public class WholePeople {
 
     public WholePeople(){
         this.numberOfDead=0;
-        this.numberOfHided=0;
+        this.numberOfHidden=0;
         this.numberOfAntibody=0;
         this.numberOfInfected=Simulator.initialInfected;
         this.numberOfSusceptible=Simulator.population-Simulator.initialInfected;
@@ -28,8 +28,8 @@ public class WholePeople {
                 case infected:
                     this.numberOfInfected++;
                     break;
-                case hided:
-                    this.numberOfHided++;
+                case hidden:
+                    this.numberOfHidden++;
                     break;
                 case susceptible:
                     this.numberOfSusceptible++;
@@ -49,7 +49,7 @@ public class WholePeople {
         this.numberOfSusceptible=0;
         this.numberOfIsolated=0;
         this.numberOfDead=0;
-        this.numberOfHided=0;
+        this.numberOfHidden=0;
         this.numberOfAntibody=0;
     }
 
@@ -104,7 +104,7 @@ public class WholePeople {
         System.out.println("******");
         System.out.println("Susceptible:"+this.numberOfSusceptible);
         System.out.println("Infected   :"+this.numberOfInfected);
-        System.out.println("Hided      :"+this.numberOfHided);
+        System.out.println("Hidden     :"+this.numberOfHidden);
         System.out.println("Antibody   :"+this.numberOfAntibody);
         System.out.println("Dead       :"+this.numberOfDead);
         System.out.println("Isolated   :"+this.numberOfIsolated);

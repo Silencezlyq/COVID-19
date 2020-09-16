@@ -12,7 +12,7 @@ public class Simulator {
     public static int rateOfAntibody = 5;
     public static int rateOfHideToCured = 40;
     public static int rateOfKeepHiding = 45;
-    public static int hidedPeriod = 7;
+    public static int hiddenPeriod = 7;
 
     public static int rateOfKeepIsolating = 50;
     public static int rateOfIsolatedToCured = 40;
@@ -27,7 +27,7 @@ public class Simulator {
     public static int timeToIsolated = 2;
     public static WholePeople wholePeople = new WholePeople();
     public static WholeArea wholeArea = new WholeArea();
-    
+
     public static void main(String[] args){
         wholePeople.setWholePeople(wholeArea);
         wearAMask();
@@ -35,7 +35,7 @@ public class Simulator {
         System.out.println("Initial situation:");
         wholePeople.getMessage();
         for(int i=0;i<period;i++){
-//            randomMovementWithNothingToDoInOneDay();
+//          randomMovementWithNothingToDoInOneDay();
             randomMovementWithOneCenterToGoInOneDay();
             System.out.println("Day "+(i+1)+":");
             wholePeople.getMessage();

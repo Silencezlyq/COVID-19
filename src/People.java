@@ -11,7 +11,6 @@ public class People {
     private int isolatedTime;
     private boolean isolated;
 
-
     public People(int id,int x,int y,Statements statement){
         this.ID = id;
         this.home.add(x);
@@ -97,8 +96,8 @@ public class People {
         if(this.latencyTime==0){
             int rate = (int)(Math.random()*100);
             if(Simulator.rateOfKeepHiding>rate){
-                this.statement=Statements.hided;
-                this.latencyTime=Simulator.hidedPeriod;
+                this.statement=Statements.hidden;
+                this.latencyTime=Simulator.hiddenPeriod;
             }else if(Simulator.rateOfKeepHiding+Simulator.rateOfHideToCured>rate){
                 this.statement=Statements.susceptible;
                 this.latencyTime--;
@@ -122,7 +121,7 @@ public class People {
     }
 
     public boolean infectious(){
-        if(this.statement==Statements.infected||this.statement == Statements.hided||this.statement==Statements.antibody){
+        if(this.statement==Statements.infected||this.statement == Statements.hidden||this.statement==Statements.antibody){
             return true;
         }
         return false;
@@ -137,8 +136,8 @@ public class People {
             int rate = (int)(Math.random()*100);
             this.infectedTime=Simulator.infectiousPeriod;
             if(rate<Simulator.rateOfHide){
-                statement=Statements.hided;
-                this.latencyTime=Simulator.hidedPeriod;
+                statement=Statements.hidden;
+                this.latencyTime=Simulator.hiddenPeriod;
                 this.infectedTime=-1;
             }
         }
