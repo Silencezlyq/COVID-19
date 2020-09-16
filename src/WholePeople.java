@@ -79,6 +79,18 @@ public class WholePeople {
         }
     }
 
+    public void goAroundWithOneCenterWholePeople(WholeArea wholeArea){
+        wholeArea.deletePeople();
+        for(People people : this.wholePeople){
+            if(Simulator.rateOfGoingToCenter>(int)(Math.random()*100)){
+                people.goAround(Simulator.center.get(0),Simulator.center.get(1));
+            }else{
+                people.goAround();
+            }
+            wholeArea.setPeople(people);
+        }
+    }
+
     public void goHomeWholePeople(WholeArea wholeArea){
         wholeArea.deletePeople();
         for(People people:this.wholePeople){
