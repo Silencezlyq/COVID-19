@@ -51,18 +51,24 @@ public class People {
             checkIsolated();
         }else {
             this.isolatedTime--;
-            keepIsolatedOrCured();
+            keepIsolatedOrCuredOrDead();
         }
     }
 
-    public void keepIsolatedOrCured(){
+    public void keepIsolatedOrCuredOrDead(){
         if(this.isolatedTime==0){
             if(Simulator.rateOfKeepIsolating>(int)(Math.random()*100)){
                 this.isolatedTime=7;
-            }else{
+            }else if (Simulator.rateOfKeepIsolating+Simulator.rateOfIsolatedToCured>(int)(Math.random()*100)){
                 this.isolatedTime--;
                 this.statement=Statements.susceptible;
                 this.isolated=false;
+                this.location.set(0,this.home.get(0));
+                this.location.set(1,this.home.get(1));
+            }else {
+                this.statement=Statements.death;
+                this.isolated=false;
+                this.isolatedTime--;
                 this.location.set(0,this.home.get(0));
                 this.location.set(1,this.home.get(1));
             }
