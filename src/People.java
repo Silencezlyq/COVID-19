@@ -8,6 +8,7 @@ public class People {
     private int ID;
     private int latencyTime;
     private int infectedTime;
+    private int isolatedTime;
     private boolean isolated;
 
 
@@ -19,25 +20,53 @@ public class People {
         this.location.add(y);
         this.statement=statement;
         this.latencyTime=-1;
-        this.infectedTime=-1;
+        if(statement==Statements.infected){
+            this.infectedTime=7;
+        }else {
+            this.infectedTime=-1;
+        }
         this.isolated=false;
     }
 
     public void goAround(){
-        this.location.set(0,move(this.location.get(0)));
-        this.location.set(1,move(this.location.get(1)));
+        if(!this.isolated){
+            this.location.set(0,move(this.location.get(0)));
+            this.location.set(1,move(this.location.get(1)));
+        }
     }
 
     public void goAround(int x,int y){
-        this.location.set(0,x);
-        this.location.set(1,y);
+        if(!this.isolated){
+            this.location.set(0,x);
+            this.location.set(1,y);
+        }
     }
 
     public void goHome(){
-        this.location.set(0,this.home.get(0));
-        this.location.set(1,this.home.get(1));
-        oneDayAfter();
-        checkTheChange();
+        if(!this.isolated){
+            this.location.set(0,this.home.get(0));
+            this.location.set(1,this.home.get(1));
+            oneDayAfter();
+            checkTheChange();
+            checkIsolated();
+        }else {
+            this.isolatedTime--;
+            keepIsolatedOrCured();
+        }
+    }
+
+    public void keepIsolatedOrCured(){
+        if(this.isolatedTime==0){
+            if(Simulator.rateOfKeepIsolating>(int)(Math.random()*100)){
+                this.isolatedTime=7;
+            }else{
+                this.isolatedTime--;
+                this.statement=Statements.susceptible;
+                this.isolated=false;
+                this.location.set(0,this.home.get(0));
+                this.location.set(1,this.home.get(1));
+            }
+        }
     }
 
     private void checkTheChange(){
@@ -142,5 +171,15 @@ public class People {
 
     public int getID(){
         return this.ID;
+    }
+
+    private void checkIsolated(){
+        if(this.infectedTime==Simulator.infectiousPeriod-Simulator.timeToIsolated){
+            setIsolated(true);
+            this.infectedTime=-1;
+            this.location.set(0,0);
+            this.location.set(1,0);
+            this.isolatedTime=7;
+        }
     }
 }

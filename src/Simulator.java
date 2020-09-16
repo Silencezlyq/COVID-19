@@ -7,11 +7,15 @@ public class Simulator {
     public static int rateOfHide = 20;
     public static int rateOfDeath = 10;
     public static int rateOfCured = 70;
+    public static int infectiousPeriod = 7;
+
     public static int rateOfAntibody = 5;
     public static int rateOfHideToCured = 40;
     public static int rateOfKeepHiding = 45;
     public static int hidedPeriod = 7;
-    public static int infectiousPeriod = 7;
+
+    public static int rateOfKeepIsolating = 50;
+
     public static int initialInfected = 100;
     public static int hospitalResources = 10;
     public static int population = 10000;
@@ -20,6 +24,7 @@ public class Simulator {
     public static List<Integer> center = new LinkedList<>(){{add(150);add(150);}};
     public static boolean maskOrNot = false;
     public static boolean isolatedOrNot = false;
+    public static int timeToIsolated = 2;
     public static WholePeople wholePeople = new WholePeople();
     public static WholeArea wholeArea = new WholeArea();
     public static Hospital hospital = new Hospital();
@@ -27,11 +32,12 @@ public class Simulator {
     public static void main(String[] args){
         wholePeople.setWholePeople(wholeArea);
         wearAMask();
+        isolatedToHospital();
         System.out.println("Initial situation:");
         wholePeople.getMessage();
         for(int i=0;i<period;i++){
-            randomMovementWithNothingToDoInOneDay();
-//            randomMovementWithOneCenterToGoInOneDay();
+//            randomMovementWithNothingToDoInOneDay();
+            randomMovementWithOneCenterToGoInOneDay();
             System.out.println("Day "+i+1+":");
             wholePeople.getMessage();
         }
